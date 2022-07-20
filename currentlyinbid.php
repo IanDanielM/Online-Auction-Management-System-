@@ -1,0 +1,1 @@
+//drop down notification onclick current bids for product which takes to you info

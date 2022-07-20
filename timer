@@ -1,0 +1,48 @@
+var session_time;
+session_time = $("#session_time") 
+$('#defaultCountdown').countdown({until: session_time}); 
+ 
+$('#removeCountdown').click(function() { 
+    var destroy = $(this).text() === 'Remove'; 
+    $(this).text(destroy ? 'Re-attach' : 'Remove'); 
+    $('#defaultCountdown').countdown(destroy ? 'destroy' : {until: session_time}); 
+});
+
+
+     <div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="employee-detail">
+  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">participate</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('.view_data').click(function(){
+      var employee_id=$(this).attr("id");
+      $.ajax({
+        url:"details.php",
+        method:"POST",
+        data:{employee_id:employee_id},
+        success:function(data){
+          $('#employee_detail').html(data);
+          $('#dataModal').modal("show");
+        }
+      })
+    })
+  })
+</script>
+
